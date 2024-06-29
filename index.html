@@ -5,16 +5,10 @@
   </head>
   <body bgcolor="#000000" text="#a0a0a0" link="#8080f0" alink="#9090e0" vlink="#ffffff">
     <center>
-      <applet code="org.lwjgl.util.applet.AppletLoader" archive="minecraft-applet.jar" width="640" height="480">
+        <applet code="com.mojang.minecraft.MinecraftApplet" archive="minecraft-applet.jar" width="640" height="480">
         <param name="al_title" value="Minecraft">
         <param name="al_main" value="com.mojang.minecraft.MinecraftApplet">
-        <param name="al_logo" value="appletlogo.png">
-        <param name="al_progressbar" value="appletprogress.gif">
         <param name="al_jars" value="minecraft-applet.jar">
-        <param name="al_windows" value="windows_natives.jar">
-        <param name="al_linux" value="linux_natives.jar">
-        <param name="al_mac" value="macosx_natives.jar">
-        <param name="al_solaris" value="solaris_natives.jar">
         <param name="al_version" value="3.14">
         <param name="separate_jvm" value="true">
         <param name="java_arguments" value="-Dsun.java2d.noddraw=true -Dsun.awt.noerasebackground=true -Dsun.java2d.d3d=false -Dsun.java2d.opengl=false -Dsun.java2d.pmoffscreen=false">
@@ -39,5 +33,17 @@
       1-9 to change building block type<br>
       Left mouse button to remove or add a block<br>
     </p>
-  </body>
+    <!-- Script to load version number from version.txt -->
+    <script>
+        fetch('version.txt') // Fetch the version.txt file
+            .then(response => response.text()) // Get the text content
+            .then(version => {
+                // Create a small text node with the version number
+                const versionText = document.createElement('small');
+                versionText.textContent = `Version: ${version}`;
+                document.body.appendChild(versionText); // Append to the body
+            })
+            .catch(error => console.error('Error fetching version:', error));
+    </script>
+</body>
 </html>
